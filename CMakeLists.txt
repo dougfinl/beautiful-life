@@ -15,6 +15,6 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(spdlog)
 
-add_executable(beautiful-life main.cpp)
+add_executable(beautiful-life main.cpp lifeuniverse.cpp)
 
 target_link_libraries(beautiful-life spdlog)
