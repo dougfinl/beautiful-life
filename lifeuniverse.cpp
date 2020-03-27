@@ -50,6 +50,19 @@ void LifeUniverse::print(char deadChar, char aliveChar) const {
   }
 }
 
+void LifeUniverse::resize(size_t w, size_t h) {
+  _currentUniverseData().resize(h);
+  _nextUniverseData().resize(h);
+
+  for (auto& row : _currentUniverseData()) {
+    row.resize(w, CS_Dead);
+  }
+
+  for (auto& row : _nextUniverseData()) {
+    row.resize(w, CS_Dead);
+  }
+}
+
 void LifeUniverse::setCell(int x, int y) {
   _currentUniverseData()[y][x] = CS_Alive;
 }

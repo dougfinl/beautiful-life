@@ -34,7 +34,15 @@ public:
   /// Prints a textual representation of the universe to STDOUT.
   void print(char deadChar = '.', char aliveChar = '#') const;
 
-  // void resize();
+  /// Resizes the universe, adding or removing from the bottom and right sides.
+  ///
+  /// If the universe is enlarged, new cells will have CellState CS_Dead. If
+  /// the universe is reduced, cells that fall outside the new universe size
+  /// will be discarded.
+  ///
+  /// \param w the new width of the universe in cells.
+  /// \param h the new height of the universe in cells.
+  void resize(size_t w, size_t h);
 
   void setCell(int x, int y);
   void clearCell(int x, int y);
