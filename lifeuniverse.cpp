@@ -1,6 +1,7 @@
 #include "lifeuniverse.h"
 
 #include <iostream>
+#include <sstream>
 
 LifeUniverse::LifeUniverse(size_t w, size_t h)
     : _iteration(0), _swapped(false) {
@@ -37,29 +38,40 @@ void LifeUniverse::update() {
 }
 
 void LifeUniverse::print(char deadChar, char aliveChar) const {
-  using namespace std;
+  std::cout << "Iteration " << _iteration << ':' << std::endl;
+  std::cout << this->str(deadChar, aliveChar);
+}
 
-  cout << "Iteration " << _iteration << ':' << endl;
+std::string LifeUniverse::str(char deadChar, char aliveChar) const {
+  std::stringstream ss;
 
   const auto uniData = data();
   for (auto &row : uniData) {
     for (auto &cellState : row) {
-      cout << (cellState == CS_Dead ? deadChar : aliveChar) << ' ';
+      ss << (cellState == CS_Dead ? deadChar : aliveChar) << ' ';
     }
-    cout << endl;
+    ss << std::endl;
   }
+
+  return ss.str();
 }
 
 void LifeUniverse::resize(size_t w, size_t h) {
-  _currentUniverseData().resize(h);
-  _nextUniverseData().resize(h);
+  if (h > 0) {
+    auto oldW = width();
+    std::vector<CellState> emptyRow(oldW, CS_Dead);
 
-  for (auto& row : _currentUniverseData()) {
-    row.resize(w, CS_Dead);
+    _currentUniverseData().resize(h, emptyRow);
+    _nextUniverseData().resize(h, emptyRow);
   }
 
-  for (auto& row : _nextUniverseData()) {
-    row.resize(w, CS_Dead);
+  if (w > 0) {
+    for (auto &row : _currentUniverseData()) {
+      row.resize(w, CS_Dead);
+    }
+    for (auto &row : _nextUniverseData()) {
+      row.resize(w, CS_Dead);
+    }
   }
 }
 

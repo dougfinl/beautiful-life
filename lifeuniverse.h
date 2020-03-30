@@ -1,6 +1,7 @@
 #ifndef LIFEUNIVERSE_H
 #define LIFEUNIVERSE_H
 
+#include <string>
 #include <vector>
 
 enum CellState : bool { CS_Dead, CS_Alive };
@@ -31,6 +32,8 @@ public:
 
   void update();
 
+  std::string str(char deadChar = '.', char aliveChar = '#') const;
+
   /// Prints a textual representation of the universe to STDOUT.
   void print(char deadChar = '.', char aliveChar = '#') const;
 
@@ -40,8 +43,11 @@ public:
   /// the universe is reduced, cells that fall outside the new universe size
   /// will be discarded.
   ///
-  /// \param w the new width of the universe in cells.
-  /// \param h the new height of the universe in cells.
+  /// \param w the new width of the universe in cells. If 0, the width will not
+  /// be changed.
+  ///
+  /// \param h the new height of the universe in cells. If 0, the height will
+  /// not be changed.
   void resize(size_t w, size_t h);
 
   void setCell(int x, int y);
