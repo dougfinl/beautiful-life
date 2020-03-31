@@ -54,6 +54,14 @@ LifeMainWindow::LifeMainWindow(QWidget *parent, Qt::WindowFlags flags)
   updateLifeUniverseOutput();
 }
 
+QSize LifeMainWindow::minimumSizeHint() const {
+  return QSize(640, 480);
+}
+
+QSize LifeMainWindow::sizeHint() const {
+  return QSize(800, 600);
+}
+
 void LifeMainWindow::initSignals() {
   connect(_btnStepUniverse, &QPushButton::released,
           [=]() {

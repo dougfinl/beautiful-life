@@ -19,6 +19,9 @@ public:
   explicit LifeMainWindow(QWidget *parent = nullptr,
                           Qt::WindowFlags flags = Qt::WindowFlags());
 
+  QSize sizeHint() const override;
+  QSize minimumSizeHint() const override;
+
 private:
   void initBottomBar();
   void initSignals();
