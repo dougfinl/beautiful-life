@@ -18,13 +18,6 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 include(FetchContent)
 
-FetchContent_Declare(
-    spdlog
-    GIT_REPOSITORY https://github.com/gabime/spdlog
-    GIT_TAG v1.5.0
-)
-FetchContent_MakeAvailable(spdlog)
-
 add_executable(beautiful-life main.cpp lifeuniverse.cpp lifemainwindow.cpp)
 
-target_link_libraries(beautiful-life spdlog Qt5::Widgets)
+target_link_libraries(beautiful-life Qt5::Widgets)
